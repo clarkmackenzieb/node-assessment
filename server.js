@@ -11,7 +11,11 @@ app.listen(port, ()=>{
     console.log(`listening on the lesser port of ${port}`);
 })
 
-app.get('/api/users', userCtrl.getUser);
-app.get('/api/users/:id', userCtrl.getUserId);
+app.get('/api/users', userCtrl.getUser); //PARMAS UGH
+app.get('/api/users/:id', userCtrl.getUserId); //ID
 app.get('/api/admins', userCtrl.getAdmins);
-app
+app.get('/api/nonadmins', userCtrl.getNonAdmins);
+app.get('/api/user_type/:type', userCtrl.getUserType); //param: query
+app.put('/api/users', userCtrl.putUser); //param: query
+app.post('/api/users', userCtrl.addUser); //body and query check
+app.delete('/api/users/:id', userCtrl.delUser); //id
