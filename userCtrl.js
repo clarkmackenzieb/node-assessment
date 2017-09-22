@@ -73,11 +73,37 @@ getUserType = (req, res, next) => {
 
 };
 
-putUser = (req, res, next) => {};
+putUser = (req, res, next) => {
+    for(var i = 0; i < userData.length; i++){
+        let reqId = parseInt(req.params.id);
+        if(userData[i].id === reqId){
+            userData[i] = req.body;
+            
+        }
+    }
+    res.status(200).send(userData)
+};
 
-addUser = (req, res, next) => {};
+addUser = (req, res, next) => {
+    if(req.body){
+        let id = userData.length+1;
+        req.body.id = id;
+        userData.push(req.body)
+    }
+    res.status(200).send(userData);
+};
 
-delUser = (req, res, next) => {};
+delUser = (req, res, next) => {
+    if(req.params.id){
+    for(var i = 0; i < userData.length; i++){
+        if(userData[i].id === parseInt(req.params.id)){
+            console.log("if statement accessed")
+            userData.splice(i, 1);
+        }
+    }
+    res.status(200).send(userData);
+}
+};
 
 module.exports = {
     getUser,
